@@ -1,0 +1,39 @@
+\contentsline {chapter}{\numberline {1}Solving Simple ODEs}{5}{chapter.1}%
+\contentsline {chapter}{\numberline {2}Existence and Uniqueness of Solutions}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Introduction}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Basic Notions}{7}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Continuity}{7}{subsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.1.1}Examples}{8}{subsubsection.2.2.1.1}%
+\contentsline {subsection}{\numberline {2.2.2}Uniform Convergence}{8}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Ascoli-Arzela}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Relative Compactness}{9}{subsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.4.1}Radial Extention}{10}{subsubsection.2.2.4.1}%
+\contentsline {section}{\numberline {2.3}Fixed Point Theorems}{10}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Banach's Contraction Mapping Theorem}{10}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Schauder-Tychonoff Theorem}{11}{subsection.2.3.2}%
+\contentsline {section}{\numberline {2.4}Existence of Solutions}{13}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Cauchy-Peano existence Theorem}{14}{subsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.1.1}Proof 1}{14}{subsubsection.2.4.1.1}%
+\contentsline {subsubsection}{\numberline {2.4.1.2}Proof 2}{16}{subsubsection.2.4.1.2}%
+\contentsline {subsection}{\numberline {2.4.2}Picard-Lindelof Existence}{16}{subsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.2.1}Proof via Picard Iteration}{16}{subsubsection.2.4.2.1}%
+\contentsline {subsubsection}{\numberline {2.4.2.2}Proof via Banach's Contraction Mapping Theorem}{16}{subsubsection.2.4.2.2}%
+\contentsline {section}{\numberline {2.5}Uniqueness Theorems}{17}{section.2.5}%
+\contentsline {subsection}{\numberline {2.5.1}Picard-Lindelof Uniqueness}{17}{subsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.1.1}Proof I, Iterated Picard Style Estimates}{18}{subsubsection.2.5.1.1}%
+\contentsline {subsubsection}{\numberline {2.5.1.2}Proof II, Gronwall's Inequality}{18}{subsubsection.2.5.1.2}%
+\contentsline {subsection}{\numberline {2.5.2}Osgood's Uniqueness Theorem}{18}{subsection.2.5.2}%
+\contentsline {section}{\numberline {2.6}Gronwall's Inequality}{18}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Proof 1}{18}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Proof 2}{18}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Proof 3}{18}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Proof 4}{18}{subsection.2.6.4}%
+\contentsline {section}{\numberline {2.7}Maximal Solutions}{18}{section.2.7}%
+\contentsline {section}{\numberline {2.8}Continuous Dependence}{19}{section.2.8}%
+\contentsline {section}{\numberline {2.9}Autonomous ODE and Flow}{19}{section.2.9}%
+\contentsline {chapter}{\numberline {3}Planar Linear Systems of ODE's}{21}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Distinct Real Eigenvalues for a Planar System}{21}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Complex Eigenvalues for a Planar System}{22}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Repeated Eigenvalues on a Planar System}{22}{section.3.3}%
+\contentsline {subsection}{\numberline {3.3.1}Qualitative Behaviors}{23}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.4}Determinant of the Matrix Exponential}{23}{section.3.4}%

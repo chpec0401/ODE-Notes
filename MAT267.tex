@@ -1,0 +1,622 @@
+\documentclass[a4paper, 12pt]{book}
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage{physics}
+\usepackage{geometry}
+\usepackage{hyperref}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{example}{Example}
+\newtheorem{proposition}{Proposition}
+\setcounter{secnumdepth}{3}
+\title{Notes for MAT267}
+\author{Eric Chang}
+\date{Spring 2026}
+\begin{document}
+    \maketitle
+	\tableofcontents
+	\chapter{Solving Simple ODEs}
+	\chapter{Existence and Uniqueness of Solutions}
+	\section{Introduction}
+	In this chapter, our biggest goal is to investigate the existence and uniqueness of solutions to an ODE. 
+	\section{Basic Notions}
+	\subsection{Continuity}
+	Consider the setting \( E \subset \mathbb{R}^n \) and \( f: E \to \mathbb{R}^m \)
+	\begin{definition}
+	    We say that \( f \) is continuous at a point \( a \in E \) if it satisfies: \[
+				\forall \varepsilon>0\quad \exists \delta>0 \quad \forall x \in E \quad (\abs{x-a} < \delta \implies \abs{f(x)-f(a)}< \epsilon)	    \]
+	\end{definition}
+\begin{definition}
+    Alternatively, we say a function \( f:E \to \mathbb{R}^m \) is uniformly continuous on a set \( D \subset E \) \[
+			\forall \varepsilon>0 \quad \exists \delta > 0 \quad \forall x,y \in D\quad(\abs{x-y}<\delta\implies \abs{f(x)-f(y)}<\varepsilon)
+	\]
+\end{definition}
+	See that we can say a function is continuous on \( D \subset E \) if it is continuous in each point on \( D \), but that doesn't necessarity satisfy uniform continuity on \( E \) as they might not be a "global" bound on the domain such that the \( \varepsilon \) bounds the range.\\
+
+We can take this "global" bound concept further to a family of functions:
+\begin{definition}
+		We call a possibly infinite family of function \( \mathcal{F}\subset \{f:E\to \mathbb{R}^m \}\) \textbf{equicontinuous} on \( D \subset \mathbb{R}^m \)if \[
+				\forall \varepsilon>0 \quad \exists \delta>0\quad \forall f \in \mathcal{F}\quad \forall x,y\in E \quad (\abs{x-y} <\delta \implies \abs{f(x)-f(y)} < \varepsilon)
+		\] for any \( x,y \in D \).
+\end{definition}
+In other words, a set of functions that is equicontinous on \( D \) must have functions that are individually uniformly continuous, and also for each \( \varepsilon \), the set of \( \delta \) satisfing \( \varepsilon \) for \( f\in \mathcal{F} \) must have a non-zero infimum.  
+\subsubsection{Examples}
+a
+\subsection{Uniform Convergence}
+We define a norm on functions:
+\begin{definition}
+The Uniform Norm is defined for a function \( f:E\to \mathbb{R}^m \):
+\[
+		\norm{f} _\infty =\operatorname{sup}_{x\in E} f(x) 
+\]
+\end{definition}
+and a type of convergence of a sequence of functions
+\begin{definition}
+ For a sequence of functions \( f_n: E\to \mathbb{R}^m \), we say that the sequence of functions converges uniformly to \( f:E\to \mathbb{R}^m \) if
+		\[
+				\forall \varepsilon>0 \quad \exists N >0 \quad \forall n \in\mathbb{N} \quad \forall x \in E \quad (n>N \implies \abs{f_n(x)-f(x)}<\varepsilon)
+		\]
+		We denote this as \[
+		 f_n \rightrightarrows f
+		\]
+\end{definition}
+This can be easily interpreted as a improvement of the natural form of convergence, which provides possibly varying \( \delta_x \) to satisfy \( \varepsilon \) for each \( x\in E \). There are many implications of Uniform convergence of a sequence of function.
+\begin{theorem}
+		If \( f_n, f:E\to \mathbb{R}^m \) and each \( f_n \) is continuous on \( E \), then \( f \) is continuous.
+\end{theorem}
+\begin{proof}
+\[
+		\norm{f(x)-f(a)}\leq \norm{f_n(x)-f(x)} -\norm{f_n(x)-f_n(a)} -\norm{f_n(a)-f(a)}< 3 \varepsilon  
+\] 
+by choosing \( n \) and \( \delta \).
+\end{proof}
+\begin{theorem}
+		Let \( E \) be a compact subset of \( \mathbb{R}^n \), \( f_n\in C(E,\mathbb{R}^m) \). If \( f_n \rightrightarrows f \) for some \( f \), then 
+		\begin{enumerate}
+				\item \( \{f_n\} \) is equicontinuous 
+				\item \( \{f_n\} \) is uniformly bounded in the uniform norm, that is \[
+								\exists M\in \mathbb{R}^+ \quad \forall n \in \mathbb{N} \quad (\norm{f_n}_\infty \leq M) 
+				\]
+		\end{enumerate}
+\end{theorem}
+\subsection{Ascoli-Arzela}
+\begin{theorem}
+		If \( E \) is a compact subset of \( \mathbb{R}^n \) and some infinite family \( \mathcal{F} \subset C(E,\mathbb{R}^m) \). If \( \mathcal{F} \) is equicontinous and unformly bounded, then for every sequence in \( \mathcal{F} \) there is a convergent subsequence. 
+\end{theorem}
+\begin{proof}
+ Not required.
+\end{proof}
+\subsection{Relative Compactness}
+\begin{definition}
+		Let \( K \) be a compact subset of \( \mathbb{R}^n \). A set \( A \subset C(K, \mathbb{R}^m) \) is called \textbf{relatively compact} if \( \overline{A} \) is compact. That is to be said, if \( A \) is a metric space, every sequence in \( A \) has a convergent subsequence. 
+\end{definition}		
+\begin{theorem}
+		If \( K \) is a compact subset of \( \mathbb{R}^n \) and \( A\subseteq C(K, \mathbb{R}^m) \), then \( A \) is relatively compact if and only if 
+		\begin{enumerate}
+				\item \( A \) is equicontinuous
+				\item \( A \) is uniformly bounded
+		\end{enumerate}
+\end{theorem}
+\begin{proof}
+ \( \implies \)\\
+		If \( A \) is relatively compact, then we know that every sequence has a convergent subsequence under the unform norm. In addition, \( \overline{A} \) is compact, thus \( A \) is bounded by the uniform norm. If \( \mathcal{F} \) is not equicontinuous, then for some \( \varepsilon>0 \) and any selection of \( \delta>0 \) there is a \( f \in \mathcal{F}\) such that \( \norm{f(x)-f(y)} <\varepsilon \) is not satisfied by \( \norm{x-y} <\delta \). \[
+		\norm{f(x)-f(y)} \geq \varepsilon
+		\]\\
+		But recall that every sequence has a converging subsequence. Consider an converging sequence of such \( f \) \[
+				f_k \rightrightarrows g
+		\]
+		We know that \( g \) must be uniformly continuous as \( g \) is continuous on a compact set. Thus, for all \( \frac{ 1 }{ 3 } \varepsilon>0 \) there must exist a \( \delta>0 \) such that \( \norm{x-y} <\delta \)\[
+				\norm{g(x)-g(y)} <\frac{ \varepsilon }{ 3 } 
+		\]
+		Since \( f_k \) converges uniformly to \( g \), there must be a \( N\in \mathbb{N}\) such that \( k>m \) means that \[
+				\norm{f_k(x)-g(x)} <\frac{ \varepsilon }{ 3 } 		
+		\]
+		Then, \[
+				\norm{f_k(x)-f_k(y)}<\varepsilon
+		\]
+		for \( k>N \) and \( \norm{x-y} <\delta \) which contraducts the assumption that \( \norm{f(x)-f(x)}\geq \varepsilon  \) for some \( \varepsilon, x,y \) where \( \norm{x-y} <\delta \) for any \( \delta \).
+		\\
+		\(\Leftarrow\)
+		\\
+		If equicontinuous and uniformly bounded, then by Ascoli-Arzela every sequence has a convergent subsequence, thus \( A \) is relatively compact by definition. 
+\end{proof}
+\subsubsection{Radial Extention}
+\begin{lemma}
+		Let \( f: \overline{\mathbb{B}}(0,R)\subset \mathbb{R}^n \to \mathbb{R} \) be continuous, then we can extend the ball to the entire domain \( \mathbb{R}^n \) by defining \( F:\mathbb{R}^n\to \mathbb{R}^m \) by \[
+				F(x) = 
+				\begin{cases}
+						f(x), & \norm{x} \leq R\\
+						f(\frac{ x }{ \norm{x}  }), & \norm{x} >R
+				\end{cases}
+		\]
+		Then \( F \) is continuous on \( \mathbb{R}^n \) and extends \( f \).
+\end{lemma}
+\section{Fixed Point Theorems}
+\subsection{Banach's Contraction Mapping Theorem}
+\begin{theorem}[Banach's Contraction Mapping theorem]
+		Let \( (D,d) \) be a complete metric space and \( T:D\to D \) be a string contraction, that is, \[
+				\exists q\in (0,1) \quad \forall x,y\in D \quad (d(T(x),T(y))\leq d(x,y)  
+		\]
+		Then \( T \) has a \textbf{unique} fixed point in \( D \). 
+\end{theorem}
+\begin{proof}
+ We use Picard's Iteration to solve the problem. Define the iteration
+		\[
+				x(n)=T(x_{n-1} )
+		\]
+		and let \( x_0\in D \) be arbitary. We first want to show that this sequence converges to some \( x^* \in D \).
+		See that \[
+				d(x_{n+1} , x_n)\leq d(T(x_n), T(x_{n-1} ))\leq q d(x_n,x_{n-1})\leq q^nd(x_1,x_0)
+		\]
+		thus we have that \[
+				d(x_n,x_m)\leq \sum_{i=n}^{m-1} d(x_{i+1}, x_i)\leq d(x_1,x_0)\sum_{i=n}^{m-1} q^i  
+		\]
+
+Since \[
+ \sum_{i=n}^{m} q^i\leq \sum_{i=1}^{\infty} q^i-\sum_{i=1}^{n} q^i= \frac{ 1 }{ 1-q } - S_n 
+\]
+Since \( \lim_{n \to \infty} S_n=\frac{ 1 }{ 1-q }  \), we have that \[
+		\forall \varepsilon>0 \quad \exists N>0 \quad \forall n \in \mathbb{N} \quad (n>N \implies \sum_{i=n}^{m} q^i \leq \frac{ 1 }{ 1-q } -S_n <\varepsilon)
+\]
+		Thus \( x_n \) is cauchy, and as \( D \) is complete, it must converge to some \( x^* \) in \( D \). We verify that \( x^* \) is a fixed point: \[
+				d(T(x^*), x^*)\leq d(T(x^*),T(x_k))+d(x_k, x^*)\leq (q+1)d(x^*,x_k)<\varepsilon
+		\]
+		Where \( \varepsilon \) can be made arbitarily small by selection of \( k \) by convergence. Thus, \[
+				T(x^*)=x^*
+		\]
+		We now want to show uniqueness. This can be done the same way:
+		\[
+				d(x^*,y^*)=d(T(x^*),T(y^*))\leq qd(x^*,y^*)
+		\]
+		Thus \[
+				d(x^*,y^*)=0
+		\]
+		Then \( x^*=y^* \)	
+\end{proof}
+\subsection{Schauder-Tychonoff Theorem}
+We begin by constructing a necessary tool:
+\begin{theorem}
+		[Brouwer's Fixed Point Theorem]
+		Let \( B=\overline{B}(0,1) \) be a closed unit ball of \( \mathbb{R}^n \) and \( T:B\to B \) be continuous. Then \( T \) has atleast one fixed point in \( B \).
+\end{theorem}
+\begin{proof}
+ The proof is not required.
+\end{proof}
+Now we proceed to the actuall theorem
+\begin{theorem}
+		[Schauder-Tychonoff Fixed Point Theorem]
+		Let \( E=C([0,1], \mathbb{R}^n) \) and \( (E,\norm{\cdot})\) a Banach Space.  Let \( B \) be the unit ball of \( E \): \[
+				B=\{ f\in E:  \norm{f} \leq 1\}
+		\]
+		Assume that \( T:B\to B \) is continuous with respect to the uniform norm and \( T(B) \) relatively compact in \( E \), then \( T \) has a fixed point in \( B \). 
+\end{theorem}
+\begin{proof}
+ We wish to use picard's iteration again: construct a suitable sequence that converges to the fixed point. We construct this sequence by linear interpolation:\\
+
+		For each \( k\in \mathbb{N} \), pick \( a_0, a_1, \cdots , a_k \in \overline{B}(0,1)\subset \mathbb{R}^n\). Define a function \[
+				x_k:[0,1]\to \mathbb{R}^n 
+		\]
+		such that for \( j\in \mathbb{N} \) and \( j\leq k \), \( t\in[\frac{ j-1 }{ k } , \frac{ j }{ k } ] \):
+		\[
+				x_k(t)=a_{j-1} +(a_j-a_{j-1})(t-\frac{ j-1 }{ k } )
+		\]
+		then \( x_k(\frac{ i }{ k }) = a_i \) and \( x_k \) is continuous. And since \( ||a_k||\leq 1 \) inside the closed ball of radius \( 1 \), and \( x_k(t) \) consists of points defined on lines between \( a_k \)'s, \( x_k([0,1])\) is bounded by \( \overline{B}(0,1)\subset \mathbb{R}^n \), thus \( x_k\in B \).
+		\\
+		Let \( B_k \) denote the set of all \( x_k \) (with arbitary selection of \( a_j \)), with the map:
+		\[
+				P_k(a_0, \cdots, a_k)= x_k \in B_k, \quad x_k(\frac{ i }{ k }) =a_i
+		\]
+		\( P_k \) is continuous as a small change in \( a_i \) corresponds to a small change in \( x_k \) due to stability of linear interpolation. Now let 
+		\[
+				T_k(a_0,\cdots, a_k)=(T(P_k (a_0,\cdots, a_k)(\frac{ 0 }{ k } ), \cdots , T(P_k(a_0, \cdots, a_k))(\frac{ k }{ k } ))
+		\]
+		Then \( T_k \) is continuous by investigating each component, with \[
+				||T\circ P_k(a)(\frac{ i }{ k }) - T\circ P_k(b)(\frac{ i }{ k } )||\leq \norm{T\circ P_k(a)-T\circ P_k (b)} _\infty
+		\]
+		where continuity follows from continuity under uniform norm. 
+		Thus, \( T_k: \overline{B}(0,1) ^{k+1} \to \overline{B}(0,1)^{k+1}  \), and is continuious, where \( \overline{B}(0,1)^k \) is homoemorphic to \( \overline{B}(0,1) \subset \mathbb{R}^{n(k+1)}  \). Thus, apply Brouwer's Fixed Point Theorem. Then, there is a fixed point \( a^*=(a^*_0, \cdots, a^*_k) \) of \( T_k \), where \[
+				T_k(a^*)=(a^*_0,\cdots, a^*_k), \quad T(P_k(a^*))(\frac{ i }{ k } )=P_k(a^*)(\frac{ i }{ k } )=a^*_i
+		\]
+		Then we have a partially fixed point \( x^*_k=P^k(a^*) \), for which \( Tx^*_k=x^*_k \) for the interpolated points $a^*$. Construct a sequence of such \( (T(x^*_k))_{k\in \mathbb{N}} \). See that since \( T(x_k^*)\in T(B)\) is relatively compact, there is a convergent subsequence converging by the uniform norm to some \( x^* \in B\). Index this sequence by \( x_k \). \\
+
+		We want to show that \( \norm{T(x_k)-x_k}_\infty \rightarrow 0\). That is, we need to show that \[
+				\forall \varepsilon>0 \quad \exists N>0 \quad \forall x \in [0,1] \quad (k>N \implies \norm{Tx_k-x_k}_\infty<\varepsilon )
+		\]
+		See that \[
+				\norm{Tx_k-x_k} =\sup_{t\in[0,1]}\norm{T(x_k)(t)-x_k(t)} 
+		\]
+		Then by triangle inequality for \( t\in[\frac{ i-1 }{ k } , \frac{ i }{ k } ] \):
+		\[
+				\norm{Tx_k(t)-x_k(t)} \leq \norm{Tx_k(t)-Tx_k(\frac{ i }{ k })} + \norm{Tx_k(\frac{ i }{ k })-x_k(\frac{ i }{ k } ) } +\norm{x_k(\frac{ i }{ k } )-x_k(t)} 
+		\]
+		Let \( \varepsilon>0 \). Since \( T(B) \) is relatively compact, it must be equicontinuous. Thus, there is a \( delta>0 \) such that \( \norm{x-y} <\delta \implies \norm{Tx_k(x)-Tx_k(y)}<\frac{ \varepsilon }{ 2 }\). Then choose \( N\) large enough such that \( \frac{ 1 }{ k } <\delta \). \\
+		Also see that \( ||x_k(\frac{ i }{ k }-x_k(t)||\leq \norm{x_k(\frac{ i }{ k } )-x_k(\frac{ i-1 }{ k } )}=\norm{Tx_k(\frac{ i }{ k } )- Tx_k(\frac{ i-1 }{ k } )} \). 
+		\\
+
+		Then, if \( k>N \), \[
+				\norm{Tx_k(t)-x_k(t)}<\varepsilon
+		\]
+		for all \( t\in [\frac{ i-1}{k } , \frac{ i }{ k } ] \), and \( N \) independent of \( i \), this is true for all \( t\in[0,1] \). Then, \[
+		 x_k \rightrightarrows x^*
+		\]
+		To verify that this is indeed a fixed point, \[
+				T(x^*)=T(\lim_{k \to \infty } x_k)=\lim_{k \to \infty}T(x_k)= x^*
+		\]
+		And thus \( x^*\) is a fixed point in \( B \)
+		
+\end{proof}
+\section{Existence of Solutions}
+\begin{definition}
+		[The Global Cauchy Problem]
+		Let \( t_0<t_1 \) in \( \mathbb{R} \) and \[
+				f:[t_0,t_1]\times \mathbb{R}^n \to \mathbb{R}^n
+		\]
+		together with an inital value \( x_0\in \mathbb{R}^n \). The initial value problem is :
+		\[
+		 \begin{cases}
+				 x^\prime(t)=f(t,x(t)), &t\in[t_0,t_1]\\
+				 x(t_0)=x_)
+		 \end{cases}
+		\]
+		where we seek a function \( x\in C^1([t_0,t_1], \mathbb{R}^n \) if possible.
+\end{definition}
+\begin{definition}
+		[Intergral Equation for an IVP]
+		Given \( f \) and \( x_0 \) as above, the intergral equation is given by \[
+				x(t)=x_0+\int_{t_0}^{t} f(s,x(s)) \dd s
+		\]
+\end{definition}
+A solution solves the IVP if and only if it satisfies the Integral Equation.
+\\
+
+With this as motivation, we define the picard map : 
+\begin{definition}
+		For \( (f,x_0,t_0,t_1) \) as previously defined, the picard map for the IVP is given by:
+		\[
+				T(x)=x_0+\int_{t_0}^{t} f(s,x(s)) \dd s
+		\]
+		Then the solution to the IVP is exactly the fixed points of \( T \). 
+\end{definition}
+and with these definitions, we have our first theorem for existence of solution
+\subsection{Cauchy-Peano existence Theorem}
+\begin{theorem}
+		[Cauchy-Peano Existence]
+Consider a global cauchy problem as defined with \( (f,x_0,t_0,t_1) \) . If \( f \) is continuous and  bounded, then the IVP has at least one solution on \( [t_0, t_1]) \)\end{theorem}
+There are two main ways to prove this:
+\subsubsection{Proof 1}
+\begin{proof}
+		Consider Banach Space \( C([t_0,t_1]) \) with the supremum norm. Let \[
+				B=\{x\in C([t_0,t_1], \mathbb{R}^n): \norm{x} _\infty \leq 1\}
+		\]
+		Define the Picard Map:
+		\[
+				Tx=x_0+\int_{t_0}^{t_1} f(s,x(s)) \dd s
+		\]
+		We wish to find a fixed point of \( T \) on \( B \). The idea is to use the Schauder-Tychonoff theorem. Thus we need to show that \( T \) is continuous and \( T(B) \) is relatively compact. \\
+		
+		To show that \( T \) is continuous. It is sufficient to show that any uniformly convergent sequence \( (x_k)\rightrightarrows x \) means that \( (T(x_k))
+		\rightrightarrows T(x)\), that is if \( x_k \to x \), then 
+		\[
+				||T(x_k)-T(x)||_\infty=\sup_{t\in[t_0, t_1]} \norm{T(x_k)(t)-T(x)(t)}  
+		\]
+		Thus,
+		\begin{align*}
+				\norm{T(x_k)(t)-T(x)(t)}&\leq \norm{\int_{t_0}^{t} f(s,x_k(s))-f(s,x(s))\dd s} \\
+				&\leq (t_1-t_0) \sup_{s\in[t_0,t_1]} ||f(s,x_k(s))-f(s,x(s))|| 
+		\end{align*}
+		but since \( f \) is continuous at \( x \), there exists \( N>0 \) such that \( k>N \) means that \( \norm{f(x_k)-f(x)} <\epsilon \). Then \( \norm{T(x_k)-T(x)} _\infty < \varepsilon \) up to choice of \( N \), thus it is continuous. \\
+		Now we want to show that it \( T(B) \) is relatively compact, that is , \( T(B) \) is uniformly bounded and equicontinuous. See that 
+		\begin{align*}
+				||T(x)(t)||&= ||x_0|| + \int_{t_0}^{t} ||f(s, x(s))||\dd s \\
+				&\leq ||x_0|| +M(t_1-t_0)
+		\end{align*}
+		Thus is uniformly bounded. With \[
+				H=\norm{x_0} +M(t_1-t_0)
+		\] To show equicontinuity, consider 
+		\begin{align*}
+				\norm{T(x)(t)-T(x)(t^\prime)}&=\int_{t^\prime}^{t} \norm{f(s,x(s))} \dd s \\
+				&\leq M|t-t^\prime|
+		\end{align*}
+		Then \( T \) is equicontinuous since the bound is independent of \( x \). 
+		Now consider two cases:
+		\\
+		\textbf{\( H\leq 1 \)}\\
+		Then we may directly apply Schauder-Tychonoff as \( T:B \to B \). Since \( T \) is equicontinuous and uniformly bounded, it is relativaly compact. Thus, by Schauder -Tychonoff, there is a fixed point \( x^*:[t_0,t_1]\to \mathbb{R}^n \) a solution to the IVP. \\
+		\textbf{\( H>1 \)}\\
+		Then we scale :
+		\[
+				y_0=x_0 \quad g(t,y(t))=\frac{1}{H} f(t, H x(t)), \quad \text{set} x(t)=Hy(t)
+		\]
+		Then Schauder-Tychonoff follows similarly. 
+\end{proof}
+\subsubsection{Proof 2}
+\subsection{Picard-Lindelof Existence}
+\begin{theorem}
+		[Picard-Lindelof Theorem]
+		Let \( D \subset \mathbb{R}\times \mathbb{R}^n\) be open, and \( (x_0,y_0) \in D\), \( f:D \to \mathbb{R}^n \). Assume:
+		\begin{enumerate}
+				\item \( f \) is continuous in the first arguement
+				\item \(f\) is Lipschitz in the second variable by constant \( K \) on \( D \)
+		\end{enumerate}
+		Then there exists \( a>0 \) such that the IVP \[
+		 \begin{cases}
+		     y^\prime(x)=f(x,y(x))\\
+				 y(x_0)=y_0
+		 \end{cases}
+		\]
+		has a solution on \( [x_0-a, x_0+a] \). Further, the solution is unique on that interval. That is to say, any solution defined on the interval must agree with \( y \) for the entire interval.
+\end{theorem}
+\subsubsection{Proof via Picard Iteration}
+\subsubsection{Proof via Banach's Contraction Mapping Theorem}
+
+\begin{proof}
+ Choose a closed rectangle on the domain of \( f \):
+		\[
+				R^\prime=[x_0-A, x_0+A]\times [y_0-L, y_0+L]
+		\]
+		Recall that \( f \) is continuous, thus it is uniformly continuous and bounded on the compact set \( R^\prime \). Let \[
+				|f(x,y)|\leq M 
+		\] for any \( (x,y)\in R^\prime \). Define length \[
+		 a\leq A, \quad a\leq \frac{ L }{ M } , \quad aK<1
+		\]
+		Then let \( I=[x_0-a,x_0+a] \), we have the complete metric space
+		\[
+				X=\{ y\in C(I, \mathbb{R}^n); |y(x_0)-y_0|\leq L\}
+		\]
+		, complete as it is closed. We want to show that the picard map \[
+				T(y)=y_0+\int_{x_0}^{x} f(s,y(s)) \dd s
+		\]
+		is a strict contranction from \( X \) to \( X  \), and thus there is a unique solution on the interval \( I \). \\
+Let \( y\in X \), then \[
+		\norm{T(y)(x)-y_0}\leq \int_{x_0}^{x} f(s,y(s)) \dd s \leq aM \leq L 
+\]
+thus \( Ty\in X \), thus \( T:X\to X \).\\
+
+\begin{align*}
+		\norm{T(y_1)(t)-T(y_2)(t)}&=\norm{\int_{x_0}^{x} f(s, y_1(s))-f(s, y_2(s)) \dd s} \\
+		&\leq |x-x_0| K||x_1-x_2||_\infty 
+\end{align*}
+thus \[
+		\norm{T(y_1)-T(y_2)} _\infty \leq Ka \norm{y_1-y_2} _\infty 
+\]
+and recall that \( 0<aK<1 \), \( T \) is a strict contraction on \( X \). Then, there exists a unique fixed point of \( T \) the picard map on \( X \), and thus the fixed point \( y^* \) is the unique solution for the IVP. 
+\end{proof}
+\section{Uniqueness Theorems}
+\subsection{Picard-Lindelof Uniqueness}
+\begin{theorem}
+		[Picard-Lindelof Theorem]
+		Let \( D \subset \mathbb{R}\times \mathbb{R}^n\) be open, and \( (x_0,y_0) \in D\), \( f:D \to \mathbb{R}^n \). Assume:
+		\begin{enumerate}
+				\item \( f \) is continuous in the first arguement
+				\item \(f\) is Lipschitz in the second variable by constant \( K \) on \( D \)
+		\end{enumerate}
+		Then there exists \( a>0 \) such that the IVP \[
+		 \begin{cases}
+		     y^\prime(x)=f(x,y(x))\\
+				 y(x_0)=y_0
+		 \end{cases}
+		\]
+		has a solution on \( [x_0-a, x_0+a] \). Further, the solution is unique on that interval. That is to say, any solution defined on the interval must agree with \( y \) for the entire interval.
+\end{theorem}
+\subsubsection{Proof I, Iterated Picard Style Estimates}
+\subsubsection{Proof II, Gronwall's Inequality}
+\subsection{Osgood's Uniqueness Theorem}
+\section{Gronwall's Inequality}
+\begin{theorem}
+		[Gronwall's Inequality Integral Form]
+		Let \( F:[a,b]\to \mathbb{R} \) and \( G: [a,b]\to [0,\infty)  \) be continuous. Suppose \( y:[a,b]\to \mathbb{R} \) continuous and satisfies \[
+				y(t)\leq F(t)+\int_{a}^{t} G(s)y(s) \dd s, \quad \forall t\in[a,b]
+		\]
+		Then for every \( t\in[a,b] \), \[
+				y(t)\leq F(t)+\int_{a}^{t} F(s)G(s)e^{\int_{s}^{t} G(u) \dd u} \dd s 
+		\]
+
+\end{theorem}
+\begin{theorem}
+		[Differential Gronwall's Inequality]
+		Let \( u, K:[a,b]\to \mathbb{R} \) be respectively differentiable and continuous, and \[
+				u^\prime(t)\leq K(t) u(t) , \quad \forall t\in[a,b]
+		\]
+		then
+		\[
+				u(t)\leq u(a)e^{\int_{a}^{t} K(s) \dd s}  
+		\]
+\end{theorem}
+\subsection{Proof 1}
+\subsection{Proof 2}
+\subsection{Proof 3}
+\subsection{Proof 4}
+\section{Maximal Solutions}
+\begin{definition}
+ We call \( f:A\to \mathbb{R}^n \) locally lipschitz if for every compact subset \( U \) of \( A \) it is lipschitz. 
+\end{definition}
+\begin{theorem}
+		Let \( D \subset \mathbb{R}^n \) be a open and connected domain and \( F:D\to \mathbb{R}^n \) locally lipschitz. Then there exists a unique maximal solution \( x:I_{\mathrm{max}} \to D  \) of \[
+				x^\prime= F(x(t)), 
+				x(0)=x_0\in I_{\mathrm{max}} 
+		\]
+		where on a unique interval of existence \( I_{\mathrm{max}}=(a,b)  \) where \( 0\in I_{\mathrm{max}}  \). In addition, if \( b<\infty \), \[
+				\lim_{x \to b}|x(t)|+\frac{ 1 }{ d(x(t),\partial D) } 
+		\]
+\end{theorem}
+
+\section{Continuous Dependence}
+\begin{theorem}
+		[Continuous Dependence on Initial Conditions and Vector Fields]
+		Let \( f: [a,b]\times \mathbb{R}^n \to \mathbb{R}^n\), be Lipschitz in the Second variable with constant \( L\geq 0 \).\\
+
+		Let \( x_1, x_2:[a,b]\to \mathbb{R}^n \),  assume \[
+				\norm{x_1^\prime(t)-f(t,x_1(t))} <\varepsilon_1, \quad \norm{x_2^\prime(t)-f(t, x_2(t))}<\varepsilon_2 
+		\]
+		and initial values satisfy \[
+				\norm{x_1(a)-x_2(a)}< \delta
+		\]
+		then for all \( t\in[a,b] \),
+		\[
+				\norm{x_1(t)-x_2(t)} < \delta e^{L(t-a)} + \frac{ \varepsilon_1+\varepsilon_2 }{ L } (e^{L(x-a)} -1)
+		\]
+\end{theorem}
+\section{Autonomous ODE and Flow}
+
+\chapter{Planar Linear Systems of ODE's}
+
+
+\section{Distinct Real Eigenvalues for a Planar System}
+Since a \( 2x2 \) matrix has a two distinct real eigenvalues, we know that we diagonalize the matrix \( A \) into
+\[
+ D=CAC^{-1}=
+ \begin{bmatrix}
+		 \lambda_1 & 0\\
+		 0 & \lambda_2
+ \end{bmatrix}
+\]
+which defines a eigen basis by \( C \), of \( v_1 \) and \( v_2 \).
+Thus, it is clear that such an ODE \[
+		X^\prime=AX(t)
+\]
+must satisfy 
+\[
+		x(t)=a(t)v_1+b(t)v_2, \quad x^\prime(t)=a(t)\lambda_1v_1+b(t)\lambda_2v_2
+\]
+which suggests the solution
+\[
+		x(t)=ae^{\lambda_1 t} v_1 + b e^{\lambda_2t} v_2 
+\]
+This defines two lines by setting \( a=0 \) or \( b=0 \), and the two directions 
+\begin{enumerate}
+		\item If \( 0<\lambda_1<\lambda_2 \), then we see that along \( v_1 \) and \( v_2 \), the arrows points away from the origin to infinity. 
+		\item If one is positive one is negative, arrows diverges from origin on the positive line, converges to origin on negative line. 
+		\item If both are negative, both points to origin
+\end{enumerate}
+\section{Complex Eigenvalues for a Planar System}
+If the Eigenvalues are non-real, then we still have 
+
+\section{Repeated Eigenvalues on a Planar System}
+Consider that you are given a homogeneous, autonomous, linear ODE:
+\[
+ x^\prime (t)=A x(t), \quad A\in \mathbb{R}^{2\times 2} 
+\]
+we seek a general solution to this, assuming the solution exist. But by our computation, it has the eigenvalue \( \lambda \) with algebrain multiplicity of \( 2 \) but geometric multiplicity of \( 1 \). We can no longer compute two linear independent eigenvectors to construct our solutions. Thus, we resort to the general eigenspace decomposition. Specifically, we can use Jordan Decomposition (for any dimentions). \\
+
+In this case, we know there is a jordan decomposition of \( A \) into one jordan block, of the form \[
+		A=C J C^{-1} 
+\]
+where \[
+		J= J(\lambda,2)= 
+		\begin{bmatrix}
+				\lambda & 1\\
+				0 & \lambda
+		\end{bmatrix}
+\]
+where \( v= C v^\prime C^{-1}  \) is an eigenvector of \( A \) where \( v^\prime \) is an eigenvector of \( J \). Then to find the other basis vector for \( J \) we define \[
+		(A+\lambda I)u=v 
+\]
+as such a vector is guarenteed to exists by the jordan form. And thus \[
+ Au=v+\lambda u
+\]
+
+Using \( v \) and \( u \) as a basis will simplify our later calculations.\\
+
+We seek a solution of the form \[
+		x(t)=a(t)v+b(t)u
+\]
+Since \[
+		Ax(t)=a(t)Av+b(t)Au=(\lambda a(t)+b(t))v+\lambda b(t)u
+\]
+we have that \[
+		a^\prime(t)=\lambda a(t)+b(t), \quad b^\prime(t)=\lambda b(t)
+\]
+then \[
+		b(t)=Be^{\lambda t}
+\]
+Since \[
+		(e^{-\lambda t} a(t))^\prime=b(t)e^{-\lambda t}=B, \quad a(t)= (A+tB)e^{\lambda t} 
+\]
+Then we have the final form of the solution:
+\[
+		x(t)=(A+tB)e^{\lambda t}v +Be^{\lambda t} u=e^{\lambda t}(Av+B(tv+u))
+\]
+\subsection{Qualitative Behaviors}
+\begin{enumerate}
+		\item If \( \lambda>0  \)
+				\begin{enumerate}
+						\item If \( c_2=0 \) then the solution stays on \( \operatorname{span} v \), moving away form the origin. 
+						\item If \( c_2 \neq 0 \), then for large \( t \), \( x(t) \) is approximately \( Be^{\lambda t}(tv+u) \) at time \( t \), moving away from the origin.
+				\end{enumerate}
+		\item If \( \lambda<0 \), then the same thing above but towards the origin. 
+\end{enumerate}
+\section{Determinant of the Matrix Exponential}
+\begin{theorem}
+		[Determinant of a Matrix Exponential]
+		If \( B \) is a \( n\times n \) matrix over \( C \) \[
+		 \operatorname{det}e^B=e^{\operatorname{tr} B} 
+		\]
+\end{theorem}
+\begin{proof}
+Recall the definition of \( e^B \):
+\[
+ e^B=\sum_{i=0}^{\infty} \frac{ B^i }{ i! } 
+\]
+We know that since \( B \) is a complex matrix, it has a jordan decomposition, providing
+\[
+		B=CJC^{-1}
+\]
+where \( J \) is a diagonal matrix of square matrices:
+		\[ J(\lambda,k) \]
+where \( k \) is the size of the block. We treat the case of a single block:
+\[
+ J_i=\lambda I+N
+\]
+where \( N \) is nilpotent. Recall that \[
+		\operatorname{det} e^{J_i} =\operatorname{det}e^{\lambda I}\operatorname{det}e^N
+\] 
+		See that $e^N=\sum_{i=0}^{k} \frac{ N^i }{ i! } $ and since sums and products of a strictly upper triangular matrix \(  N \) is also strictly triangular, the diagonal of \( e^N \) is only contributed by \( I \). Thus, \( e^n \) is upper triangular and \( \operatorname{det} e^N = \Pi_{i=1}^{n} 1 =1\)
+		Thus \[
+				\operatorname{det}e^{J_i}=\operatorname{det}e^{\lambda I}= \operatorname{det} ((\sum_{i=0}^{\infty} \frac{ \lambda^i }{ i! } )I)=\operatorname{det} e^\lambda = e^{\sum_{i=1}^{k} \lambda} = e^{\operatorname{tr} J(\lambda,k)} 
+		\]
+		The consider all the blocks, with \( n \) dimentional matrix \( B \) and jordan blocks \( J_i \)
+		\[
+				\operatorname{det}e^B=\operatorname{det}e^J= \Pi_i \operatorname{det} J_i  =e^{\operatorname{tr} B}
+		\]
+		where we used that \( e^J \) is a identically partitioned block diagonal matrix with respect to \( J \) with the diagonal elements \( e^{J_i} \).
+
+\end{proof}
+
+\begin{theorem}
+		[Liouville's formula]
+		Consider the Linear System \[
+		 x^\prime(t)=A(t)x(t), \quad A(t)\in C([t_0,t_1], \mathbb{R}^{n\times n} )
+		\]
+		A fundamental matrix is a matrix-valued solution \( \Phi(t) \) of
+		\[
+				\Phi^\prime(t)=A(t)\Phi(t), \quad \Phi(t_0)=B_0\in \operatorname{GL}(n, \mathbb{R}) 
+		\]
+		Then \[
+				\operatorname{det}\Phi(t)= \operatorname{det} (B_0) e^{\int_{t_0}^{t} \operatorname{tr} (A(s))\dd s}
+		\]
+		Equivalently, the Wrongskian \( W(t) = \operatorname{det}\Phi\) satisfies the scalar ODE \[
+				W^\prime(t)= \operatorname{tr} (A(t)) W(t), \quad W(t_0)=\operatorname{det}B_0
+		\]
+		(Assuming the solution exist and is unique)
+\end{theorem}
+\begin{proof}
+ We have that \[
+		 (\Phi(t)^\prime -A(t)\Phi(t)) e^{-\int_{t_0}^{t} A(s) \dd s }=0
+ \]
+		Thus \[
+				(\Phi(t)e^{-\int_{t_0}^{t} A(s)\dd s}) ^\prime=0
+		\]
+		and \[
+				\Phi(t)=B_0 e^{\int_{t_0}^{t} A(s) \dd s} 
+		\]
+		and thus \[
+				\operatorname{det}\Phi(t)= \operatorname{det}B_0 e^{\operatorname{tr} \int_{t_0}^{t} A(s) \dd s} = \operatorname{det}(B_0) e^{\int_{t_0}^{t} \operatorname{tr} A(s) \dd s} 
+		\]
+		Then we have shown the first part. Now let \( W(t)= \operatorname{det}\Phi(t) \). \[
+				W^\prime(t)=\operatorname{det}(B_0) \operatorname{tr} (A(t)) e^{\int_{t_0}^{t} \operatorname{tr} A(s) \dd s } = \operatorname{tr} (A(t)) W(t)
+		\]
+\end{proof}
+
+
+
+\end{document}
