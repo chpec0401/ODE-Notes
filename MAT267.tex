@@ -530,7 +530,7 @@ then \[
 		b(t)=Be^{\lambda t}
 \]
 Since \[
-		(e^{-\lambda t} a(t))^\prime=b(t)e^{-\lambda t}=B, \quad a(t)= (A+tB)e^{\lambda t} 
+		(e^{-\lambda t} a(t))^\prime=b(t) e^{-\lambda t}=B, \quad a(t)= (A+tB)e^{\lambda t} 
 \]
 Then we have the final form of the solution:
 \[
@@ -616,7 +616,25 @@ where \( N \) is nilpotent. Recall that \[
 				W^\prime(t)=\operatorname{det}(B_0) \operatorname{tr} (A(t)) e^{\int_{t_0}^{t} \operatorname{tr} A(s) \dd s } = \operatorname{tr} (A(t)) W(t)
 		\]
 \end{proof}
-
-
+\section{Duhamel's Formula}
+Consider a inhomogeneous linear system:
+\[x^\prime(t)=Ax(t)+f(t)\]
+where we take \( A\in \mathbb{R}^{n\times n} \) and \( f \) is a time dependent function in \( \mathbb{R}^n \). Let \( y \) be a \textit{particular} solution to such a differential equation, then we know that,  by linearity \[
+ x(t)=y(t)+e^{tA} v
+\] is a solution for arbitary initial condition defining \( v \). Indeed \[
+ x_1(t)=e^{At} v
+\] is a solution to \( x^\prime(t)=Ax(t) \). Then 
+\begin{align*}
+	x^\prime(t)&=\left( y+x_1\right) ^\prime\\
+			   &= y^\prime+x_1^\prime\\
+			   &= A(y+x_1)+f(t)\\
+			   &=Ax+f(t)
+\end{align*}
+Thus, the problem reduces to finding a particular solution to the original system. Of course, we know very well the solution to the linear system using an integration factor \( e^{At}\):
+\begin{align*}
+	e^{At} y^\prime +e^{At} Ay&=e^{At} f(t)\\
+	(e^{At} y)^\prime &= e^{At} f(t)\\
+	e^{At} y&= y_0 +\int_{t_0}^{t} e^{As} f(s）
+\end{align*}
 
 \end{document}

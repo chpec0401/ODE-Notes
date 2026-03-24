@@ -1,6 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1774316441.48152 "/home/chpec/Projects/ODE-Notes/MAT267.tex" "MAT267.pdf" "MAT267" 1774316441.76698 0
-  "/home/chpec/Projects/ODE-Notes/MAT267.tex" 1774316441.12114 29253 b43f70a8ab7c027d49039e0179073989 ""
+["pdflatex"] 1774319291.51643 "MAT267.tex" "MAT267.pdf" "MAT267" 1774319291.7937 0
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1772820570 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1772820570 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1772820570 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -87,14 +86,14 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1772820570 43569 fd570f2fa160877d211e859f687312ba ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1773603395 5385779 47c0c393a77fd4a098bacfd57d66b88a ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1773603378 2328190 69f0dec8bf31e4bbaa2211fd1c3ece67 ""
-  "MAT267.aux" 1774316441.73614 5653 47aafe5d7f326bf36dba40743143d3c0 "pdflatex"
-  "MAT267.out" 1774316441.73714 5563 823e72dc15998e1c18a2d0df6cec4960 "pdflatex"
-  "MAT267.tex" 1774316441.12114 29253 b43f70a8ab7c027d49039e0179073989 ""
-  "MAT267.toc" 1774316441.73714 3622 43524f59eaa7d1d18687a6bb14401fc4 "pdflatex"
+  "MAT267.tex" 1774319290.10607 30124 f43cb2fb25f8e3f6079fe6a25ab5bcf4 ""
+  "aux/MAT267.aux" 1774319291.76907 5653 47aafe5d7f326bf36dba40743143d3c0 "pdflatex"
+  "aux/MAT267.out" 1774319291.77006 5563 823e72dc15998e1c18a2d0df6cec4960 "pdflatex"
+  "aux/MAT267.toc" 1774319291.77006 3622 43524f59eaa7d1d18687a6bb14401fc4 "pdflatex"
   (generated)
-  "MAT267.aux"
-  "MAT267.log"
-  "MAT267.out"
   "MAT267.pdf"
-  "MAT267.toc"
+  "aux/MAT267.aux"
+  "aux/MAT267.log"
+  "aux/MAT267.out"
+  "aux/MAT267.toc"
   (rewritten before read)
