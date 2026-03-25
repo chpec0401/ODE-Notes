@@ -37,4 +37,6 @@
 \contentsline {section}{\numberline {3.3}Repeated Eigenvalues on a Planar System}{22}{section.3.3}%
 \contentsline {subsection}{\numberline {3.3.1}Qualitative Behaviors}{23}{subsection.3.3.1}%
 \contentsline {section}{\numberline {3.4}Determinant of the Matrix Exponential}{23}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Duhamel's Formula}{25}{section.3.5}%
+\contentsline {section}{\numberline {3.5}General Linear First Order Systems}{25}{section.3.5}%
+\contentsline {subsection}{\numberline {3.5.1}Inhomogeneous Systems}{28}{subsection.3.5.1}%
+\contentsline {chapter}{\numberline {4}Dynamical Systems}{29}{chapter.4}%

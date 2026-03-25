@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.15)  24 MAR 2026 02:28
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (TeX Live 2026/Arch Linux) (preloaded format=pdflatex 2026.3.15)  25 MAR 2026 02:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -374,6 +374,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 372--374
 
  []
 
+
+Overfull \hbox (1.79381pt too wide) in paragraph at lines 388--389
+[]\OT1/cmr/bx/n/12 Theorem 2.10 \OT1/cmr/m/n/12 (Pi-card-Lin-de-lof The-o-rem)\OT1/cmr/bx/n/12 . \OT1/cmr/m/it/12 Let $\OML/cmm/m/it/12 D \OMS/cmsy/m/n/12 ^^Z \U/msb/m/n/12 R \OMS/cmsy/m/n/12 ^^B \U/msb/m/n/12 R[]$ \OT1/cmr/m/it/12 be open, and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x[]; y[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 2
+ []
+
 [17] [18]
 Underfull \hbox (badness 10000) in paragraph at lines 446--447
 
@@ -393,27 +398,46 @@ Underfull \hbox (badness 10000) in paragraph at lines 518--519
 
  []
 
-[22] [23] [24] [25] (aux/MAT267.aux)
+[22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 620--621
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 645--646
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 647--648
+
+ []
+
+[25] [26] [27] [28]
+Chapter 4.
+[29
+
+] [30] (aux/MAT267.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 Package rerunfilecheck Info: File `MAT267.out' has not changed.
-(rerunfilecheck)             Checksum: 823E72DC15998E1C18A2D0DF6CEC4960;5563.
+(rerunfilecheck)             Checksum: 6F468958CD9AC358B7255EF1CC6ADBAE;5959.
  ) 
 Here is how much of TeX's memory you used:
- 10181 strings out of 469515
- 150362 string characters out of 5470807
- 572062 words of memory out of 5000000
- 38631 multiletter control sequences out of 15000+600000
- 638148 words of font info for 79 fonts, out of 8000000 for 9000
+ 10228 strings out of 469515
+ 151177 string characters out of 5470807
+ 572428 words of memory out of 5000000
+ 38645 multiletter control sequences out of 15000+600000
+ 638849 words of font info for 81 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 75i,11n,79p,543b,677s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,79p,667b,677s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsl12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on aux/MAT267.pdf (25 pages, 263330 bytes).
+Output written on aux/MAT267.pdf (30 pages, 281204 bytes).
 PDF statistics:
- 442 PDF objects out of 1000 (max. 8388607)
- 375 compressed objects within 4 object streams
- 109 named destinations out of 1000 (max. 500000)
- 257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 507 PDF objects out of 1000 (max. 8388607)
+ 434 compressed objects within 5 object streams
+ 140 named destinations out of 1000 (max. 500000)
+ 273 words of extra memory for PDF output out of 10000 (max. 10000000)
 

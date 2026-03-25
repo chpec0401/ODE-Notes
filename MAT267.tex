@@ -3,11 +3,11 @@
 \usepackage{physics}
 \usepackage{geometry}
 \usepackage{hyperref}
-\newtheorem{definition}{Definition}
-\newtheorem{theorem}{Theorem}
-\newtheorem{lemma}{Lemma}
-\newtheorem{example}{Example}
-\newtheorem{proposition}{Proposition}
+\newtheorem{definition}{Definition}[chapter]
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{lemma}{Lemma}[chapter]
+\newtheorem{example}{Example}[chapter]
+\newtheorem{proposition}{Proposition}[chapter]
 \setcounter{secnumdepth}{3}
 \title{Notes for MAT267}
 \author{Eric Chang}
@@ -616,25 +616,211 @@ where \( N \) is nilpotent. Recall that \[
 				W^\prime(t)=\operatorname{det}(B_0) \operatorname{tr} (A(t)) e^{\int_{t_0}^{t} \operatorname{tr} A(s) \dd s } = \operatorname{tr} (A(t)) W(t)
 		\]
 \end{proof}
-\section{Duhamel's Formula}
-Consider a inhomogeneous linear system:
-\[x^\prime(t)=Ax(t)+f(t)\]
-where we take \( A\in \mathbb{R}^{n\times n} \) and \( f \) is a time dependent function in \( \mathbb{R}^n \). Let \( y \) be a \textit{particular} solution to such a differential equation, then we know that,  by linearity \[
- x(t)=y(t)+e^{tA} v
-\] is a solution for arbitary initial condition defining \( v \). Indeed \[
- x_1(t)=e^{At} v
-\] is a solution to \( x^\prime(t)=Ax(t) \). Then 
-\begin{align*}
-	x^\prime(t)&=\left( y+x_1\right) ^\prime\\
-			   &= y^\prime+x_1^\prime\\
-			   &= A(y+x_1)+f(t)\\
-			   &=Ax+f(t)
-\end{align*}
-Thus, the problem reduces to finding a particular solution to the original system. Of course, we know very well the solution to the linear system using an integration factor \( e^{At}\):
-\begin{align*}
-	e^{At} y^\prime +e^{At} Ay&=e^{At} f(t)\\
-	(e^{At} y)^\prime &= e^{At} f(t)\\
-	e^{At} y&= y_0 +\int_{t_0}^{t} e^{As} f(s）
-\end{align*}
+\section{General Linear First Order Systems}
+Let us first define a few preliminary concepts.\\
 
+We call a matrix \( A(t) \) differentiable if all of its coefficients are. In this case, we denote for \[
+	(A(t))_{jk} =a_{jk} (t)
+\], that
+\[
+	(A^\prime(t))_{jk} = a^\prime_{jk} (t)
+\]
+Thus several common rules of differentiation follows
+\begin{enumerate}
+	\item Product rule \[
+			((AB)^\prime(t))_{jk} =(\sum_{i=1}^{n} (a_{ji}(t)b_{ik} (t))^\prime)_{jk}=(A^\prime(t)B(t)+A(t)B^\prime(t))_{jk} 
+	\]
+\item If \( \det A(t) \neq 0 \), \[
+		DA(t)^{-1} =-A(t)^{-1} \dot{A}(t)A(t)^{-1} 
+\]
+\end{enumerate}	
+\begin{theorem}
+ The linear first-order system \[
+  \dot{x}(t)=A(t)x(t)
+ \]
+ where \( A(t)\in C(I, \mathbb{R}^{n\times n} ) \) where \( I\subset \mathbb{R} \) is some interval. Then there is a unique solution satisfying the initial condition \( x(t_0)=x_0\in \mathbb{R}^{n}\) defined for all \( t\in I \).
+ \label{thm:Linear First Order System}
+\end{theorem}
+\begin{proof}
+	We do this proof as a simple practice.\\
+
+First, we wish to apply Picard-Lindelof locally. Since \( f(t)=A(t)x(t) \) is \( C^1 \), then there is a costant \( \alpha \) such that there exists a solution \( x:[t_0-\alpha, t_0+\alpha ]\to \mathbb{R}^n \) unique on its interval of definition. We may extend it by defining new IVP with \( x(t_{\pm 1} )=x(t_0\pm \alpha ) \), glueing gives the unique solution on the union of the defining intervals of the solution. By repeated application of this process, we must come to a maximal interval \( I_{\max} \subset I\) (of course there must be a supremum defined by the total order on the intervals, and the supremum being \( I \)). \\
+
+Consider then case where \( I_{\max} \subsetneq I\). Suppose for the sake of contradiction that \( I_{\max} \) is closed. Then, \( I_{\max}=[a,b] \), but we may still extend it using Picard-Lindelof, thus \( I_{\max} \) must be open. Write \( I_{\max} = (I_-,I_+) \). If \( I_+ (I_-)\in \operatorname{int} I   \), then define an open ball centered at \( I_+ (I_-)  \), we may extend the solution again. Thus by contradiction, if \( I \)  is open then \( I=I_{\max} \). Otherwise, if \( I \) is not open, we have that for a side not open, (suppose the left side)
+	\begin{align*}
+		x(t)&=x_0+\int_{t_0}^{t} A(s)x(s)\mathrm{d}s\\
+		x(a)&=x_0+\int_{t_0}^{a} A(s)x(s)\mathrm{d}s\\
+		\frac{ x(a)-x(t) }{ a-t } &=\frac{ 1 }{ a-t } \int_{t}^{a} A(s)x(s)\mathrm{d}s
+\end{align*}
+Taking the limit of both sides we have that \[
+ x^\prime(a)=A(a)x(a)
+\]
+where the derivative is defined on a single side.
+Applying to the other side the same way, we find that \( I_{\max} \) may still be extended. Thus, \( I=I_{\max} \) is the maximal interval of existence of a unique solution.
+\end{proof}
+It is a simple observation that 
+\begin{enumerate}
+	\item \( C(I,\mathbb{R}^n)\) is a vector space
+	\item \( 0 \) is a solution to the system in theorem \ref{thm:Linear First Order System}
+	\item Linear combinations of solutions are also solutions
+\end{enumerate}
+Thus, the solutions forms a subspace of \( C(I,\mathbb{R}) \). Further, a solution defined by \( \phi(t,x_0) \) can be written as \[
+ \phi(t, t_0 ,x_0)=\sum_{i=1}^{n} \phi(t,t_0,e_i) (x_0)_i
+\]
+where \( e_i \) is the \( i \)th standard basis. Thus, define 
+\begin{equation}
+ \Pi(t)=
+ \begin{bmatrix}
+	 \phi(t,t_0, e_1)& \cdots &\phi(t,t_0, e_n)
+ \end{bmatrix}
+ \label{eq:Fundamental Matrix}
+\end{equation}
+See that this solve the first order system \[
+ \Pi^\prime(t)=A(t)\Pi(t), \quad \Pi(t_0)=\mathbb{I}
+\]
+and has the property \[
+ \Pi(t)x_0=\phi(t,t_0,x_0)
+\]
+Thus we define
+\begin{definition}
+	The matrix defined by \eqref{eq:Fundamental Matrix} is the \textbf{Principal Matrix Solution} (at \( t_0 \)), solving the \textbf{Matrix Valued} IVP \[
+	 \Pi(t,t_0)=A(t)\Pi(t), \qquad \Pi(t_0)=\mathbb{I}
+	\]
+\end{definition}
+Here is an interesting property of the Principal Matrix Solution:\[
+ \Pi(t,t_0)=\Pi(t,t_1)\Pi(t_1,t_0)
+\]
+Let \( t=t_1 \), we obtain 
+\[
+ \mathbb{I}=\Pi(t_0,t_1)\Pi(t_1,t_0)
+\]
+Thus,
+\[
+	(\Pi(t,t_0))^{-1} =\Pi(t_0,t)
+\]
+Take this to a more general perspective, take \( n \) arbitrary solutions \( \{ \phi_1, \cdots, \phi_n \}\),
+	we an define a matrix valued solution \[
+		U=[\phi_1 \quad \cdots \quad \phi_n ]
+	\]
+	Then we have that \[
+	 \dot{U}(t)U^{-1}(t) =A(t)
+	\]
+	\begin{definition}
+	    Define \[
+	     U(t)=
+		 \begin{bmatrix}
+			 \phi_1 &\cdots&\phi_n
+		 \end{bmatrix}
+	    \]
+		where \( \phi_i \) are solutions described by theorem \ref{thm:Linear First Order System}. The determinant of \( U \) is called the \textbf{Wronski Determinant} 
+		\begin{equation*}
+		 W(t)=\det(\phi_1, \cdots, \phi_n)
+		\end{equation*}
+		In addition, if \( W(t)\neq 0 \), \( U \) is called a fundamental matrix solution.
+	\end{definition}
+	\begin{proposition}
+	    The Wronski determinant of \( n \) solutions satisfies 
+		\begin{equation*}
+		    W(t)=W(t_0)\int_{t_0}^{t} \tr(A(s))\mathrm{d}s
+		\end{equation*}
+	\end{proposition}
+	\begin{proof}
+	 Proved in class
+	\end{proof}
+	\subsection{Inhomogeneous Systems}
+	We define the \( n \) dimentional Linear System:
+	\begin{equation}
+	    \dot{x}=A(t)x(t)+f(t)
+		\label{eq: n dimentional Inhomogeneous Linear System}  
+	\end{equation}
+	where \( A(t)\in C(I,\mathbb{R}^{n\times n} ) \) and \( f(t)\in \mathbb{R}^n \). See that if \( x,y \) are solutions to the system \eqref{eq: n dimentional Inhomogeneous Linear System}, their difference must take the form \[
+		(x-y)^\prime(t)=A(t)(x(t)-y(t))
+	\]
+	a solution to the homogeneous system. With this as motivation, we can easily find a solution to the inhomogeneous system.
+	\begin{theorem}
+	 The solution for the \( n \) dimentional Inhomogeneous linear IVP \[
+	  x^\prime(t)=A(t)x(t)+f(t), \quad x(t_0)=x_0
+	 \]
+	 where \( A(t)\in C(I,\mathbb{R}^{n\times n}  \) and \( f\in C(I,\mathbb{R}^n) \) is given by
+	 \begin{equation}
+	  x(t)=\Pi(t,t_0)x_0+\int_{t_0}^{t} \Pi(s,t_0)f(s)\mathrm{d}s
+	  \label{eq:Solution for n dimentional Inhomogeneous Linear IVP}
+	 \end{equation}
+	 \label{thm: solution for the n dimentional Inhomogeneous IVP}
+	\end{theorem}
+
+	\chapter{Dynamical Systems}
+	Consider a planar linear system \begin{equation}
+	 x^\prime(t)=Ax(t), \quad A\in \mathbb{R}^{2\times 2} 
+	 \label{eq: planar linear system}  
+	\end{equation}
+	we write \[
+	 \tr(A)=T, \quad \det A= D
+	\]
+	\begin{definition}
+		The equilibrium point \( 0 \) of the system \eqref{eq: planar linear system} is called \textbf{hyperbolic} if the matrix \( A \) satisfies that all eigenvalues \( \lambda_i \) satisfies that \[
+		 \lambda_i\neq 0
+		\]
+	\end{definition}
+	\begin{proposition}
+	    A planar linear system is hyperbolic if and only if \[
+			(D<0)\lor((D>0)\land(T\neq 0))
+	    \]
+	\end{proposition}
+	\begin{definition}
+	 A property \( P \) of matricies in \( \mathbb{R}^{n\times n}  \) is called \textbf{generic} if the set \[
+		 S=\{A\in \mathbb{R}^{n\times n} : P(A)\}
+	 \]
+	 is open and dense in \( \mathbb{R}^{n\times n}  \).
+	\end{definition}
+\begin{definition}
+    Two matrices \( A,B \) are conjugate to each other of there is an invertible matrix \( T \) such that \[
+     B=T^{-1} A T
+    \]
+	In addition, in any group one says \( a \) is conjugate to \( b \) if \[
+	 b=gag^{-1} 
+	\]
+	for some invertible element \( g \)
+\end{definition}
+Thus, since we know that the flow on the set of solutions to a differential equation is a group, we define \[
+ \psi_t=h\circ \phi_t \circ h^{-1} 
+\]
+characterizing conjugacy. If \( h \) is a homeomorphism, then topological conjugacy holds. If \( h \) is a diffeomorphism, smooth conjugacy holds. 
+\begin{definition}
+ Let \( \phi(t) \) be a dynamical system on \( D\subset \mathbb{R}^n \), with \( t\geq 0 \) and \( a\in D \) a fixed point (equilibrium):
+ \[
+	 \phi_t(a)=(a)\quad \text{for all } t>\geq 0
+ \]
+ Then \( a \) is call stabvle if for every \( \varepsilon>0 \) there exist \( \delta>0 \) such that \[
+  \norm{x-a} < \delta \implies \sup_{t\geq 0} \norm{\phi_t(x)-a} <\varepsilon
+ \]
+\end{definition}
+\begin{definition}
+    Respectively, \( a \) is unstable if it is not stable. 
+\end{definition}
+\begin{definition}
+    \( a \) is asymtopically stable if: 
+	\begin{enumerate}
+		\item \( a \) is stable
+		\item there exists \( \delta>0 \) such that 
+			\[
+				\norm{x-a} < \delta \implies \phi_t(x) \to a \text{ as } t\to \infty 
+			\]
+	\end{enumerate}
+\end{definition}
+\begin{theorem}
+	[Hartman-Grobman theorem]
+	Let \[
+	 x^\prime=f(x)
+	\] where \( f\in C^1 \) and suppose \( a \) is a equilibrium:
+	\[
+	 f(a)=0
+	\]
+	Let \( A:DF(a) \). Assume \( A \) is hyperbolic. Let \( \Phi)t \) denote the nonlinear flow and \( \Psi_t=e^{tA}  \) the linearized flow. then there exists neighborhoods \( U  \) of \( a \) and \( V \) of \( 0 \) together with a homeomorphism \[
+	 h:U\to V,
+	\]
+	such that \( g\circ \Phi_t=\Psi_t\circ h \) whenever both sides are defined and remain in the chose neighborhoods. Equivalently, \[
+	 \Phi_t=h^{-1} \circ e^{tA} \circ h
+	\]
+\end{theorem}
 \end{document}
