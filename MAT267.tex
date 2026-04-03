@@ -798,7 +798,7 @@ where we assume \( f\in C^k(M, \mathbb{R}^n) \) with \( k\geq 1 \) and \( M\subs
 For every point \( x_0\in M \), we know that there exists a unique maximal solution \( x(t) \) (maximal integral curve) to the IVP with \( x(0)=x_0 \), on a maximal interval \( I_{x_0} =(T_-(x_0), T_+(x_0)) \). Define the set \[
 	W= \bigcup_{x \in M} I_{x}\times \{x\} \subset \mathbb{R}\times M
 \]
-Then we may define the flow of the dynamical system \[
+Then we may define the flow of the differential equation \[
 	\Phi:W\to M, \quad (t,x_0) \mapsto \phi(t,x_0)
 \]
 Where \( \phi(t,x_0) \) is the maximal integral curve at \( x_0 \). Let \( x(t)=\phi(t,x_0) \) define maximan integral curve at \( x_0 \), then $y(t)=\phi(t+s,x_0)$ with \( y(0)=x(s) \) must define the maximal integral curve at \( x(s) \). Their maximal intervals of existence necessarily statisfy \( I_{x_0} =s+ I_{x_s} \). As an interesting conclusion, \begin{equation}
@@ -809,6 +809,78 @@ In the case where the ODE is linear (and some other cases), clearly \( I_{x_0} =
 	\Phi:\mathbb{R}\times M \to M, \quad (t,x_0)\to \phi(t,x_0)
 \]
 We can verify that this indeed follows the semigroup action: write \( \phi(t,x)=\phi_t(x) \), then \[
-	(\phi_a\circ \phi_b) (x) = \phi_{a+b} (x)
-\] which follows directly from \eqref{eq: semigroup action}.
+	(\phi_a\circ \phi_b ) (x) = \phi_{a+b} (x)
+\] which follows directly from \eqref{eq: semigroup action}.\\
+
+Hence, we have 3 different view points of the map \( \Phi \):
+\begin{enumerate}
+	\item The first level is simply the master equation of \[
+	 \Phi:W \times M
+	\]
+\item Fix \( x\in M \), we obtain a curve of the solution to the ODE parametrizing with respect to \( t \):\[
+ \phi_x:I_x \to M
+\]
+\item Fix \( t \) in a suitable subset \( \overline{I}\subset \bigcup I_x\) and a corresponding subset \( X\subset M \), we have a operator on \( X \) defined \[
+ \phi_t: X\to X 
+\]
+where the output of the operator highlights the dynamics of the system depending on the initial value \( x \).
+\end{enumerate}
+\begin{theorem}
+    Let \( f\in C^k(M, \mathbb{R}^n) \) , then for each \( x\in M \), there is a unique pair maximal integral curve \[
+     \phi_x: I_{x}\to M, \quad \phi_x(0)=x 
+    \]
+	Define 
+	\[
+		W=\{(t,x)\in \mathbb{R}\times M: t\in I_x\}, \quad \Phi:W\to M, \quad \Phi(t,x)=\phi_x(t)
+	\]
+	we have that \( M \) is open and \( \Phi\in C^k(W,M) \) a (local) flow on \( M \), that is, it satisfies \[
+	 \Phi(t+s,x)=\Phi(t,\Phi(s,x)), \quad \Phi(0,x)=x
+	\]
+\end{theorem}
+In the operator viewpoint, set \( t_1, -t_1\in I \) and thus we obtain an inverse to the operator.  
+Taking it a step further, we can formalize all these concept algebraicly
+\section{Exursion: Global Flow}
+\begin{definition}
+    A \textbf{Lie Group} is a group that is also a smooth manifold
+\end{definition}
+\begin{definition}
+ Let \( I \) be a Lie Group with an identity element \( e \), \( M \) be a smooth manifold. If \[
+  \Phi: I\times M\to M
+ \]
+ is a smooth map satisfying \[
+  \Phi(e,x)=x
+ \]
+ and
+ \[
+  \Phi(g,\Phi(h,p))=\Phi(gh,p)
+ \]
+ We call \( \Phi \) a smooth action of \( I \) on \( M \). For each \( g\in I \) we define \[
+  \Phi_g:M \to M, \quad \Phi_g(p)=\Phi(g,p)
+ \]
+\end{definition}
+\begin{theorem}
+ If \( \Phi  \) is a smooth action of Lie Group \( G \) on smooth manifold \( M \), then for every \( g\in G \), the map \( \Phi_g \) is a diffeomorphism of \( M \). Moreover, \[
+  \Phi_{gh} = \Phi_g \circ \Phi_h, \quad \Phi_e=\mathbb{I}_M, \quad \Phi_{g^{-1} } =(\Phi_g)^{-1} 
+ \]
+ so the action defined a group homeomorphism \[
+  G \to \operatorname{Diff}(M), \quad g\mapsto \Phi_g 
+ \]
+\end{theorem}
+\begin{definition}
+ A family $\left\{\Phi_t\right\}_{t \in \mathbb{R}} \subset \operatorname{Diff}(M)$ is called a one-parameter transformation group on $M$ if:\\
+1. $\Phi_0=\mathrm{id}_M$,\\
+2. $\Phi_{t+s}=\Phi_t \circ \Phi_s$ for all $s, t \in \mathbb{R}_1$\\
+3. the map
+$$
+\Phi: \mathbb{R} \times M \rightarrow M, \quad(t, p) \mapsto \Phi_t(p)
+$$
+is smooth.\\
+\end{definition}
+
+
+Thus a one-parameter transformation group is exactly a smooth action of the Lie group $(\mathbb{R},+)$ on $M$. 
+\begin{definition}
+ 
+\end{definition}
+
 \end{document}
